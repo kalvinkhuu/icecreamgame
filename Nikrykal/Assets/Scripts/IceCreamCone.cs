@@ -10,7 +10,7 @@ public class IceCreamCone : MonoBehaviour
 
     private GameObject CurrentBall;
     private int CurrentBallIndex;
-
+    private int NumBalls;
     public float TimePerScoopDeath = 10.0f;
 
     // Start is called before the first frame update
@@ -21,9 +21,11 @@ public class IceCreamCone : MonoBehaviour
 
     public void PickupNewIceCream()
     {
+        gameObject.SetActive(true);
         TimeElapsed = 0.0f;
         CurrentBallIndex = 0;
         CurrentBall = Balls[CurrentBallIndex];
+        NumBalls = Balls.Length;
         foreach (GameObject Ball in Balls)
         {
             Ball.SetActive(true);
@@ -43,10 +45,20 @@ public class IceCreamCone : MonoBehaviour
             if (CurrentBallIndex < Balls.Length - 1)
             {
                 CurrentBallIndex++;
+                NumBalls--;
                 CurrentBall = Balls[CurrentBallIndex];
             }
         }
-               
+    }
 
+    public void GiveIceCreamToChild()
+    {
+        NumBalls = 0;
+        gameObject.SetActive(false);
+    }
+
+    public int GetNumBalls()
+    {
+        return NumBalls;
     }
 }
