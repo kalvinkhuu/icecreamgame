@@ -21,17 +21,27 @@ public class IceCreamCone : MonoBehaviour
         CurrentBall = Balls[CurrentBallIndex];
     }
 
+    public void PickupNewIceCream()
+    {
+        CurrentBallIndex = 0;
+        CurrentBall = Balls[CurrentBallIndex];
+        foreach(GameObject Ball in Balls)
+        {
+            Ball.SetActive(true);
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
        TimeElapsed += Time.deltaTime;
-       Debug.Log("Time Elapsed = " + TimeElapsed.ToString());
+       //Debug.Log("Time Elapsed = " + TimeElapsed.ToString());
           
         if (TimeElapsed >= TimePerScoopDeath)
         {
             CurrentBall.SetActive(false);
             TimeElapsed = 0.0f;
-            if (CurrentBallIndex < Balls.Length)
+            if (CurrentBallIndex < Balls.Length - 1)
             {
                 CurrentBallIndex++;
                 CurrentBall = Balls[CurrentBallIndex];
