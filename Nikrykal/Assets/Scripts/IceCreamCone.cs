@@ -16,16 +16,15 @@ public class IceCreamCone : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        TimeElapsed = 0.0f;
-        CurrentBallIndex = 0;
-        CurrentBall = Balls[CurrentBallIndex];
+        PickupNewIceCream();
     }
 
     public void PickupNewIceCream()
     {
+        TimeElapsed = 0.0f;
         CurrentBallIndex = 0;
         CurrentBall = Balls[CurrentBallIndex];
-        foreach(GameObject Ball in Balls)
+        foreach (GameObject Ball in Balls)
         {
             Ball.SetActive(true);
         }
