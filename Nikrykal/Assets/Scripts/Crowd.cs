@@ -21,7 +21,7 @@ public class Crowd : MonoBehaviour
 
     public int StartCombinationIndex = 0;
 
-    void Awake()
+    void OnValidate()
     {
         CrowdPeople = GetComponentsInChildren<CrowdPerson>();
         int index = 0;
