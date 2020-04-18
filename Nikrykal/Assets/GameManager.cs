@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
         if (TimeSinceLastSpawn > SpawnTimer)
         {
             SpawnTimer = Random.Range(2.0f, 10.0f);
+            TimeSinceLastSpawn = 0.0f;
             SpawnANewChild();
         }
     }
@@ -47,7 +48,7 @@ public class GameManager : MonoBehaviour
             if (!GameChildren[i].activeSelf)
             {
                 GameChildren[i].SetActive(true);
-                int Multiplier = Random.Range(1, 3);
+                int Multiplier = Random.Range(1, 4);
                 Child child = GameChildren[i].GetComponent<Child>();
                 if (Multiplier == 1)
                 {

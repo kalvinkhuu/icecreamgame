@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Child : MonoBehaviour
 {
@@ -27,6 +28,9 @@ public class Child : MonoBehaviour
     public void SetMultiplier(int NewMultiplier)
     {
         Multiplier = NewMultiplier;
-
+        Debug.Log("Multiplier = " + NewMultiplier);
+        GetComponentInChildren<TextMeshPro>().text = "X" + Multiplier;
+        float NewScale = 0.8f + 0.1f * Multiplier;
+        transform.localScale = new Vector3(NewScale, NewScale, NewScale);
     }
 }

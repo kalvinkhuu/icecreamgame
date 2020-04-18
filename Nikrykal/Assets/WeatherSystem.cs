@@ -21,11 +21,7 @@ public class WeatherSystem : MonoBehaviour
     void Update()
     {
         TimeElapsed += Time.deltaTime;
-
-        Debug.Log("TimeElapsed:" + TimeElapsed);
         float NewXRotation = RotationForSunrise + 180.0f * TimeElapsed / (DurationOfGame);
-        Debug.Log("NewXRotation:" + NewXRotation);
         transform.rotation = Quaternion.AngleAxis(NewXRotation, new Vector3(1.0f,0.0f,0.0f));
-     
     }
 }

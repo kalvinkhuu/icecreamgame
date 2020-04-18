@@ -38,7 +38,7 @@ public class IceCreamPlayer : MonoBehaviour
         }
         else if (child != null)
         {
-            if (m_IceCreamCone.GetNumBalls() > 1)
+            if (m_IceCreamCone.GetNumBalls() > 0)
             {
                 m_IceCreamCone.GiveIceCreamToChild();
                 Score += m_IceCreamCone.GetNumBalls() * child.GetMultiplier();

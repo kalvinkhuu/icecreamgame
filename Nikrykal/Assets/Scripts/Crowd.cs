@@ -50,7 +50,6 @@ public class Crowd : MonoBehaviour
         if (TimeElapsed > PossibleTimeToMove)
         {
             PossibleTimeToMove = Random.Range(1, 10);
-            Debug.Log(PossibleTimeToMove);
 
             int index = 0;
             int combinationIndex = Random.Range(0, Combinations.Length - 1);
