@@ -17,9 +17,9 @@ public class Crowd : MonoBehaviour
 
     private int CrowdPeopleIndex;
 
-    public float TimeToMovePeople = 5;
-
-    public int StartCombinationIndex = 0;
+    public int StartCombinationIndex;
+    
+    int PossibleTimeToMove;
 
     void OnValidate()
     {
@@ -38,7 +38,8 @@ public class Crowd : MonoBehaviour
         {
             Debug.Log("This is: " + Person.Name);
         }
-       
+        PossibleTimeToMove = Random.Range(1, 10);
+
     }
 
     // Update is called once per frame
@@ -46,8 +47,11 @@ public class Crowd : MonoBehaviour
     {
         TimeElapsed += Time.deltaTime;
     
-        if (TimeElapsed > TimeToMovePeople)
+        if (TimeElapsed > PossibleTimeToMove)
         {
+            PossibleTimeToMove = Random.Range(1, 10);
+            Debug.Log(PossibleTimeToMove);
+
             int index = 0;
             int combinationIndex = Random.Range(0, Combinations.Length - 1);
             foreach (CrowdPerson Person in CrowdPeople)
