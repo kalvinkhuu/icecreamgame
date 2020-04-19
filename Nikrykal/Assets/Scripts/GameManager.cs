@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     private GameObject [] GameChildren;
     public int MaxGameChildren = 10;
     public float GameTimeInMinutes = 3;
+    public static float GameTimeInSeconds;
     private float TimeElapsed = 0.0f;
     private float TimeSinceLastSpawn = 0.0f;
     private float SpawnTimer = 1.0f;
@@ -24,6 +25,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        GameTimeInSeconds = GameTimeInMinutes * 60.0f;
         GameChildren = new GameObject[MaxGameChildren];
         for (int i = 0; i < MaxGameChildren; ++i)
         {
