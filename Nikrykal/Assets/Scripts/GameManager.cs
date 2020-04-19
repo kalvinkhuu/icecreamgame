@@ -62,7 +62,19 @@ public class GameManager : MonoBehaviour
                 {
                     child.SetMultiplier(5);
                 }
-                child.transform.position = new Vector3(Random.Range(-19, 19), 10.0f, Random.Range(10, -10));
+
+                float xRange = Random.Range(-19, 19);
+
+                float maxZRange = 10;
+                if (xRange > (-10 / 3.0f) && xRange < (10 / 3.0f))
+                {
+                    maxZRange = 6;
+                }
+
+                float zRange = Random.Range(-10,maxZRange);
+
+                child.transform.position = new Vector3(xRange, 10.0f, zRange);
+
                 break;
             }
         }
