@@ -22,7 +22,6 @@ public class Child : MonoBehaviour
     public int GetMultiplier()
     {
         return Multiplier;
-
     }
 
     public void SetMultiplier(int NewMultiplier)
