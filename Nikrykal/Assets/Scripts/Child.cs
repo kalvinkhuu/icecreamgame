@@ -11,7 +11,10 @@ public class Child : MonoBehaviour
     public Material X3Material;
     public Material X5Material;
     public Material X10Material;
+    public AudioSource X10Sound;
     private ChildRenderer childRenderer;
+
+    private float TimeAlive = 0.0f;
 
     // Start is called before the first frame update
     void Awake()
@@ -22,7 +25,19 @@ public class Child : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (gameObject.activeSelf)
+        {
+            if (Multiplier == 10)
+            {
+                TimeAlive += Time.deltaTime;
+            }
+            if (TimeAlive > 5.0f)
+            {
+                TimeAlive = 0.0f;
+                gameObject.SetActive(false);
+                X10Sound.Stop();
+            }
+        }
     }
 
     public int GetMultiplier()
@@ -48,6 +63,7 @@ public class Child : MonoBehaviour
         else if (Multiplier == 10)
         {
             childRenderer.SetMaterial(ref X10Material);
+            X10Sound.Play();
         }
         GetComponentInChildren<TextMeshPro>().text = "X" + Multiplier;
         float NewScale = 0.8f + 0.1f * Multiplier;

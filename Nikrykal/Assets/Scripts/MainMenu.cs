@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    public static int ChosenNumPlayers = 1;
+    public static int ChosenNumPlayers = 4;
 
 
     public void GoToSelectMenu()

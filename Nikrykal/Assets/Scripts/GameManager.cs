@@ -56,7 +56,7 @@ public class GameManager : MonoBehaviour
             {
                 Time.timeScale = 1.0f;
                 Time.fixedDeltaTime = 0.02F;
-                PlayerWinOrder = new int[4,2];
+                PlayerWinOrder = new int[4, 2];
 
                 System.Array.Sort(Players, delegate (IceCreamPlayer m, IceCreamPlayer n)
                 { return m.GetScore().CompareTo(n.GetScore()); });
@@ -64,7 +64,7 @@ public class GameManager : MonoBehaviour
 
                 for (int i = 0; i < Players.Length; ++i)
                 {
-                    PlayerWinOrder[i,0] = Players[i].GetScore();
+                    PlayerWinOrder[i, 0] = Players[i].GetScore();
                     PlayerWinOrder[i, 1] = Players[i].PlayerNumber;
                 }
 
@@ -108,7 +108,7 @@ public class GameManager : MonoBehaviour
             if (!GameChildren[i].activeSelf)
             {
                 GameChildren[i].SetActive(true);
-                int Multiplier = Random.Range(1, 4);
+                int Multiplier = Random.Range(1, 5);
                 Child child = GameChildren[i].GetComponent<Child>();
                 if (Multiplier == 1)
                 {
@@ -121,6 +121,19 @@ public class GameManager : MonoBehaviour
                 else if (Multiplier == 3)
                 {
                     child.SetMultiplier(5);
+                }
+                else if (Multiplier == 4)
+                {
+                    int chance = Random.Range(1, 5);
+                    if (chance == 4)
+                    {
+                        child.SetMultiplier(10);
+                    }
+                    else
+                    {
+                        child.SetMultiplier(2);
+                    }
+                    
                 }
 
                 float xRange = Random.Range(-15, 15);
