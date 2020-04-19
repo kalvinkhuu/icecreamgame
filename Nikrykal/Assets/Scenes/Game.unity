@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.43615213, g: 0.47443116, b: 0.5141861, a: 1}
+  m_IndirectSpecularColor: {r: 0.43615282, g: 0.47443157, b: 0.51418704, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1222,7 +1222,7 @@ MonoBehaviour:
   GameChildPrefab: {fileID: 956187052484879005, guid: 3e501b777f906cf4c9371724f6e9d94a,
     type: 3}
   MaxGameChildren: 10
-  GameTimeInMinutes: 0.2
+  GameTimeInMinutes: 3
 --- !u!1 &622022211
 GameObject:
   m_ObjectHideFlags: 0
@@ -1963,7 +1963,7 @@ PrefabInstance:
     - target: {fileID: 1877999250434364809, guid: 4472089caa991e4459ae179d08c677b1,
         type: 3}
       propertyPath: GamepadIndex
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1877999251321173472, guid: 4472089caa991e4459ae179d08c677b1,
         type: 3}
@@ -6183,7 +6183,7 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
+  serializedVersion: 3
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
@@ -6860,7 +6860,7 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
+  serializedVersion: 3
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -8049466339483892108, guid: 93bd50da14b5a2a4e8fff8aef4019197, type: 3}
