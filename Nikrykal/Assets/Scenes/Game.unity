@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.43615282, g: 0.47443157, b: 0.51418704, a: 1}
+  m_IndirectSpecularColor: {r: 0.43615213, g: 0.47443116, b: 0.5141861, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -345,7 +345,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3373f7c5682cd0240ae9eebb198756ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DurationOfGame: 10
+  DurationOfGame: 60
   RotationForSunrise: 10
 --- !u!1 &201058253
 GameObject:
@@ -5054,7 +5054,7 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
@@ -5633,7 +5633,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7726986154466628300}
   m_LocalRotation: {x: -0.5, y: -0.5, z: -0.5, w: 0.5}
-  m_LocalPosition: {x: 0.14288, y: 1.56, z: 9.8984}
+  m_LocalPosition: {x: 0.14288, y: 1.72, z: 9.8984}
   m_LocalScale: {x: 125.829994, y: 188.745, z: 157.28749}
   m_Children:
   - {fileID: 1542596522}
@@ -5669,7 +5669,7 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 3
+  serializedVersion: 4
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -8049466339483892108, guid: 93bd50da14b5a2a4e8fff8aef4019197, type: 3}
