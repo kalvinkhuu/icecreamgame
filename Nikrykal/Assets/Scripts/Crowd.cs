@@ -34,12 +34,7 @@ public class Crowd : MonoBehaviour
 
     void Start()
     {
-        foreach(CrowdPerson Person in CrowdPeople)
-        {
-            Debug.Log("This is: " + Person.Name);
-        }
         PossibleTimeToMove = Random.Range(1, 10);
-
     }
 
     // Update is called once per frame

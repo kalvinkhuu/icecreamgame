@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1212940031487933217}
-  - component: {fileID: 79244112015196031}
+  - component: {fileID: 3171914556259170412}
   m_Layer: 0
   m_Name: SFX K
   m_TagString: Untagged
@@ -31,7 +31,7 @@ Transform:
   m_Father: {fileID: 1877999251321438308}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!82 &79244112015196031
+--- !u!82 &3171914556259170412
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,7 +41,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 6f0271868a1828a4b8177b3e8108b243, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 39af9bb1b51c34f4f947f1cc0b9bc96d, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -311,7 +311,7 @@ MonoBehaviour:
   m_JumpPower: 12
   m_GravityMultiplier: 2
   m_RunCycleLegOffset: 0.2
-  m_MoveSpeedMultiplier: 1
+  m_MoveSpeedMultiplier: 1.3
   m_AnimSpeedMultiplier: 1
   m_GroundCheckDistance: 30
 --- !u!114 &1877999250434364809
@@ -339,7 +339,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 568898b8ee51e904199a5c4dbce5a5e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PickupSound: {fileID: 79244112015196031}
+  PickupSound: {fileID: 3171914556259170412}
   PlayerNumber: 0
 --- !u!1001 &1877999249520948258
 PrefabInstance:
