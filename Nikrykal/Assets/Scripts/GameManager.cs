@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     private GameObject [] GameChildren;
     public int MaxGameChildren = 10;
     public float GameTimeInMinutes = 3;
+    public static float GameTimeInSeconds;
     private float TimeElapsed = 0.0f;
     private float TimeSinceLastSpawn = 0.0f;
     private float SpawnTimer = 1.0f;
@@ -19,9 +20,12 @@ public class GameManager : MonoBehaviour
 
     private IceCreamPlayer[] Players;
     private TextMeshProUGUI[] ScoreTexts;
+
+    public static int[,] PlayerWinOrder;
     // Start is called before the first frame update
     void Start()
     {
+        GameTimeInSeconds = GameTimeInMinutes * 60.0f;
         GameChildren = new GameObject[MaxGameChildren];
         for (int i = 0; i < MaxGameChildren; ++i)
         {
@@ -46,7 +50,22 @@ public class GameManager : MonoBehaviour
             {
                 Time.timeScale = 1.0f;
                 Time.fixedDeltaTime = 0.02F;
-                SceneManager.LoadScene("Menu");
+                PlayerWinOrder = new int[4,2];
+
+                System.Array.Sort(Players, delegate (IceCreamPlayer m, IceCreamPlayer n)
+                { return m.GetScore().CompareTo(n.GetScore()); });
+                System.Array.Reverse(Players);
+
+                for (int i = 0; i < Players.Length; ++i)
+                {
+                    PlayerWinOrder[i,0] = Players[i].GetScore();
+                    PlayerWinOrder[i, 1] = Players[i].PlayerNumber;
+                }
+
+                //for each player 
+                //order by highest
+                //set the player win order array
+                SceneManager.LoadScene("GameOver");
             }
             return;
         }

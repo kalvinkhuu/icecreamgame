@@ -11,8 +11,10 @@ public class IceCreamCone : MonoBehaviour
     private GameObject CurrentBall;
     private int CurrentBallIndex;
     private int NumBalls;
-    public float TimePerScoopDeath = 10.0f;
+    public float TimePerScoopDeathNormal = 10.0f;
+    public float TimePerScoopDeathHot = 7.0f;
 
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -37,16 +39,32 @@ public class IceCreamCone : MonoBehaviour
     {
        TimeElapsed += Time.deltaTime;
        //Debug.Log("Time Elapsed = " + TimeElapsed.ToString());
-          
-        if (TimeElapsed >= TimePerScoopDeath)
+        if (WeatherSystem.CurrentSunRotationX >= 75 && WeatherSystem.CurrentSunRotationX <= 95) 
         {
-            CurrentBall.SetActive(false);
-            TimeElapsed = 0.0f;
-            if (CurrentBallIndex < Balls.Length - 1)
+            if (TimeElapsed >= TimePerScoopDeathHot)
             {
-                CurrentBallIndex++;
-                NumBalls--;
-                CurrentBall = Balls[CurrentBallIndex];
+                CurrentBall.SetActive(false);
+                TimeElapsed = 0.0f;
+                if (CurrentBallIndex < Balls.Length - 1)
+                {
+                    CurrentBallIndex++;
+                    NumBalls--;
+                    CurrentBall = Balls[CurrentBallIndex];
+                }
+            }
+        }
+        if (WeatherSystem.CurrentSunRotationX <= 75 && WeatherSystem.CurrentSunRotationX >= 95)
+        {
+            if (TimeElapsed >= TimePerScoopDeathNormal)
+            {
+                CurrentBall.SetActive(false);
+                TimeElapsed = 0.0f;
+                if (CurrentBallIndex < Balls.Length - 1)
+                {
+                    CurrentBallIndex++;
+                    NumBalls--;
+                    CurrentBall = Balls[CurrentBallIndex];
+                }
             }
         }
     }

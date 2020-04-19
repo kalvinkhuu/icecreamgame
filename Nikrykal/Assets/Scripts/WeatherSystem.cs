@@ -6,9 +6,10 @@ public class WeatherSystem : MonoBehaviour
 {
     private float TimeElapsed;
     private float TimeForSunrise = 0.0f;
-    private float TimeForSunset = 600.0f;
-    public float DurationOfGame;
+    public float DurationOfGame = GameManager.GameTimeInSeconds;
     public float RotationForSunrise;
+    public static float CurrentSunRotationX;
+   
 
     // Start is called before the first frame update
     void Start()
@@ -21,7 +22,8 @@ public class WeatherSystem : MonoBehaviour
     void Update()
     {
         TimeElapsed += Time.deltaTime;
-        float NewXRotation = RotationForSunrise + 180.0f * TimeElapsed / (DurationOfGame);
-        transform.rotation = Quaternion.AngleAxis(NewXRotation, new Vector3(1.0f,0.0f,0.0f));
+        CurrentSunRotationX = RotationForSunrise + 180.0f * TimeElapsed / (DurationOfGame);
+        transform.rotation = Quaternion.AngleAxis(CurrentSunRotationX, new Vector3(1.0f,0.0f,0.0f));
+        
     }
 }
