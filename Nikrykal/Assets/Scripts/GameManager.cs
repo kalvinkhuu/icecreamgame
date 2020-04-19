@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     public GameObject GameChildPrefab;
 
     private GameObject [] GameChildren;
-    public int MaxGameChildren = 10;
+    public int MaxGameChildren = 6;
     public float GameTimeInMinutes = 3;
     public static float GameTimeInSeconds;
     private float TimeElapsed = 0.0f;
@@ -38,6 +38,13 @@ public class GameManager : MonoBehaviour
         ScoreTexts = canvas.GetComponentsInChildren<TextMeshProUGUI>();
         Debug.Log("NumPlayersFound: " + Players.Length);
         Debug.Log("NumScoreTextsFound: " + ScoreTexts.Length);
+
+        int NumPlayers = 4;
+        for (int i = Players.Length - 1; i >= NumPlayers; i--)
+        {
+            Players[i].gameObject.SetActive(false);
+            ScoreTexts[i].enabled = false;
+        }
     }
 
     // Update is called once per frame
@@ -120,9 +127,9 @@ public class GameManager : MonoBehaviour
                 float xRange = Random.Range(-15, 15);
 
                 float maxZRange = 10;
-                if (xRange > (-10 / 3.0f) && xRange < (10 / 3.0f))
+                if (xRange > -10 && xRange < 10)
                 {
-                    maxZRange = 6;
+                    maxZRange = 1;
                 }
 
                 float zRange = Random.Range(-10,maxZRange);
