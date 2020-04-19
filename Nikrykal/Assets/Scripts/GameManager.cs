@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
 
     private IceCreamPlayer[] Players;
     private TextMeshProUGUI[] ScoreTexts;
+
+    public static int[,] PlayerWinOrder;
     // Start is called before the first frame update
     void Start()
     {
@@ -46,7 +48,22 @@ public class GameManager : MonoBehaviour
             {
                 Time.timeScale = 1.0f;
                 Time.fixedDeltaTime = 0.02F;
-                SceneManager.LoadScene("Menu");
+                PlayerWinOrder = new int[4,2];
+
+                System.Array.Sort(Players, delegate (IceCreamPlayer m, IceCreamPlayer n)
+                { return m.GetScore().CompareTo(n.GetScore()); });
+                System.Array.Reverse(Players);
+
+                for (int i = 0; i < Players.Length; ++i)
+                {
+                    PlayerWinOrder[i,0] = Players[i].GetScore();
+                    PlayerWinOrder[i, 1] = Players[i].PlayerNumber;
+                }
+
+                //for each player 
+                //order by highest
+                //set the player win order array
+                SceneManager.LoadScene("GameOver");
             }
             return;
         }

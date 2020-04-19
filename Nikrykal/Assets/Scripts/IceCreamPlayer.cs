@@ -11,6 +11,7 @@ public class IceCreamPlayer : MonoBehaviour
     bool bCanPickupNewIceCream = false;
     private int Score = 0;
     public AudioSource PickupSound;
+    public int PlayerNumber = 0;
 
     public int GetScore()
     {
