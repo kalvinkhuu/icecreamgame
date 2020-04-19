@@ -10,6 +10,7 @@ public class IceCreamPlayer : MonoBehaviour
     private IceCreamInteraction m_IceCreamInteraction;
     bool bCanPickupNewIceCream = false;
     private int Score = 0;
+    public AudioSource PickupSound;
 
     public int GetScore()
     {
@@ -50,6 +51,7 @@ public class IceCreamPlayer : MonoBehaviour
                 Debug.Log("Current Score " + Score);
                 child.gameObject.SetActive(false);
                 m_IceCreamCone.GiveIceCreamToChild();
+                PickupSound.Play();
             }
         }
     }
