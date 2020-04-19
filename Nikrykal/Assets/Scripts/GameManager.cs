@@ -39,8 +39,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("NumPlayersFound: " + Players.Length);
         Debug.Log("NumScoreTextsFound: " + ScoreTexts.Length);
 
-        int NumPlayers = 4;
-        for (int i = Players.Length - 1; i >= NumPlayers; i--)
+        for (int i = Players.Length - 1; i >= MainMenu.ChosenNumPlayers; i--)
         {
             Players[i].gameObject.SetActive(false);
             ScoreTexts[i].enabled = false;

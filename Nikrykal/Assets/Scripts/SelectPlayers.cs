@@ -9,7 +9,6 @@ public class SelectPlayers : MonoBehaviour
     //bool TwoPlayer = false;
     //bool ThreePlayer = false;
     //bool FourPlayer = false; 
-
     public void PlayGame()
 
     {
