@@ -23,7 +23,7 @@ public class WeatherSystem : MonoBehaviour
     {
         TimeElapsed += Time.deltaTime;
         CurrentSunRotationX = RotationForSunrise + 180.0f * TimeElapsed / (DurationOfGame);
-        transform.rotation = Quaternion.AngleAxis(CurrentSunRotationX, new Vector3(1.0f,0.0f,0.0f));
+        transform.rotation = Quaternion.AngleAxis(CurrentSunRotationX, new Vector3(1.0f,0.0f,0.0f)) * Quaternion.AngleAxis(20.0f, new Vector3(0.0f, 1.0f, 1.0f)); ;
         
     }
 }

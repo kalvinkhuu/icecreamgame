@@ -13,7 +13,7 @@ public class IceCreamCone : MonoBehaviour
     private int NumBalls;
     public float TimePerScoopDeathNormal = 10.0f;
     public float TimePerScoopDeathHot = 7.0f;
-
+    public bool IsSunLeader;
     
     // Start is called before the first frame update
     void Start()
@@ -39,7 +39,7 @@ public class IceCreamCone : MonoBehaviour
     {
        TimeElapsed += Time.deltaTime;
        //Debug.Log("Time Elapsed = " + TimeElapsed.ToString());
-        if (WeatherSystem.CurrentSunRotationX >= 75 && WeatherSystem.CurrentSunRotationX <= 95) 
+        if ((WeatherSystem.CurrentSunRotationX >= 75 && WeatherSystem.CurrentSunRotationX <= 95) || IsSunLeader) 
         {
             if (TimeElapsed >= TimePerScoopDeathHot)
             {
@@ -53,7 +53,7 @@ public class IceCreamCone : MonoBehaviour
                 }
             }
         }
-        if (WeatherSystem.CurrentSunRotationX <= 75 && WeatherSystem.CurrentSunRotationX >= 95)
+        else
         {
             if (TimeElapsed >= TimePerScoopDeathNormal)
             {

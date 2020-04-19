@@ -12,14 +12,20 @@ public class Child : MonoBehaviour
     public Material X5Material;
     public Material X10Material;
     public AudioSource X10Sound;
+    public AudioSource SadSound;
     private ChildRenderer childRenderer;
+    private TextMeshPro Text;
 
+    private float currentRotationX = 0;
     private float TimeAlive = 0.0f;
+    public float SpinSpeed = 5.0f;
+    private bool SadSoundPlayed = false;
 
     // Start is called before the first frame update
     void Awake()
     {
         childRenderer = GetComponentInChildren<ChildRenderer>();
+        Text = GetComponentInChildren<TextMeshPro>();
     }
 
     // Update is called once per frame
@@ -27,17 +33,30 @@ public class Child : MonoBehaviour
     {
         if (gameObject.activeSelf)
         {
+            TimeAlive += Time.deltaTime;
             if (Multiplier == 10)
             {
-                TimeAlive += Time.deltaTime;
+                if (TimeAlive > 5.0f)
+                {
+                    TimeAlive = 0.0f;
+                    gameObject.SetActive(false);
+                    X10Sound.Stop();
+                }
             }
-            if (TimeAlive > 5.0f)
+            else if (!SadSoundPlayed && TimeAlive > 15.0f)
             {
-                TimeAlive = 0.0f;
-                gameObject.SetActive(false);
-                X10Sound.Stop();
+                SadSound.Play();
+                SadSoundPlayed = true;
             }
+            else if (TimeAlive > 20.0f)
+            {
+                gameObject.SetActive(false);
+            }
+            
         }
+        currentRotationX += Time.deltaTime * SpinSpeed;
+        transform.localRotation = Quaternion.AngleAxis(currentRotationX, new Vector3(0.0f, 1.0f, 0.0f));
+        Text.transform.localRotation = Quaternion.AngleAxis(-currentRotationX, new Vector3(0.0f, 1.0f, 0.0f)) * Quaternion.AngleAxis(20.0f, new Vector3(1.0f, 0.0f, 0.0f));
     }
 
     public int GetMultiplier()
@@ -47,6 +66,7 @@ public class Child : MonoBehaviour
 
     public void SetMultiplier(int NewMultiplier)
     {
+        SadSoundPlayed = false;
         Multiplier = NewMultiplier;
         if (Multiplier == 2)
         {

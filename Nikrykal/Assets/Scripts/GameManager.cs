@@ -87,6 +87,19 @@ public class GameManager : MonoBehaviour
             }
         }
 
+        if (TimeElapsed > GameTimeInMinutes * 60.0f * 0.66f)
+        {
+            var SortedPlayers = Players;
+            System.Array.Sort(SortedPlayers, delegate (IceCreamPlayer m, IceCreamPlayer n)
+            { return m.GetScore().CompareTo(n.GetScore()); });
+            System.Array.Reverse(SortedPlayers);
+            SortedPlayers[0].SetIsSunLeader(true);
+            for (int i = 0; i < SortedPlayers.Length; ++i)
+            {
+                SortedPlayers[i].SetIsSunLeader(false);
+            }
+        }
+
         TimeSinceLastSpawn += Time.deltaTime;
         if (TimeSinceLastSpawn > SpawnTimer)
         {
