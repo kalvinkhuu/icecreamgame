@@ -65,7 +65,7 @@ public class GameManager : MonoBehaviour
         TimeSinceLastSpawn += Time.deltaTime;
         if (TimeSinceLastSpawn > SpawnTimer)
         {
-            SpawnTimer = Random.Range(2.0f, 10.0f);
+            SpawnTimer = Random.Range(2.0f, 5.0f);
             TimeSinceLastSpawn = 0.0f;
             SpawnANewChild();
         }
@@ -98,7 +98,7 @@ public class GameManager : MonoBehaviour
                     child.SetMultiplier(5);
                 }
 
-                float xRange = Random.Range(-19, 19);
+                float xRange = Random.Range(-15, 15);
 
                 float maxZRange = 10;
                 if (xRange > (-10 / 3.0f) && xRange < (10 / 3.0f))
@@ -108,7 +108,7 @@ public class GameManager : MonoBehaviour
 
                 float zRange = Random.Range(-10,maxZRange);
 
-                child.transform.position = new Vector3(xRange, 10.0f, zRange);
+                child.transform.position = new Vector3(xRange, 0.0f, zRange);
 
                 break;
             }
