@@ -9,9 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu.unity
     guid: 616ddcdb7411592458476d486a78cc62
   - enabled: 1
-    path: Assets/Scenes/NumberOfPlayers.unity
-    guid: 155464a1024ef5442bb9a4e2ab4c7a1e
-  - enabled: 1
     path: Assets/Scenes/Game.unity
     guid: 0129b174d81c60f459649f5215b24205
   - enabled: 1
