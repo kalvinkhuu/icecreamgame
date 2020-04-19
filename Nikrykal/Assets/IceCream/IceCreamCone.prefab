@@ -145,6 +145,7 @@ MonoBehaviour:
   - {fileID: 3331135563628758991}
   - {fileID: 3331135562617031244}
   TimePerScoopDeath: 5
+  PickupSound: {fileID: 0}
 --- !u!1 &3331135563053601088
 GameObject:
   m_ObjectHideFlags: 0
