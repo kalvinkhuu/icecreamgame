@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     public GameObject GameChildPrefab;
 
     private GameObject [] GameChildren;
-    public int MaxGameChildren = 10;
+    public int MaxGameChildren = 6;
     public float GameTimeInMinutes = 3;
     public static float GameTimeInSeconds;
     private float TimeElapsed = 0.0f;
@@ -38,6 +38,12 @@ public class GameManager : MonoBehaviour
         ScoreTexts = canvas.GetComponentsInChildren<TextMeshProUGUI>();
         Debug.Log("NumPlayersFound: " + Players.Length);
         Debug.Log("NumScoreTextsFound: " + ScoreTexts.Length);
+
+        for (int i = Players.Length - 1; i >= MainMenu.ChosenNumPlayers; i--)
+        {
+            Players[i].gameObject.SetActive(false);
+            ScoreTexts[i].enabled = false;
+        }
     }
 
     // Update is called once per frame
@@ -50,7 +56,7 @@ public class GameManager : MonoBehaviour
             {
                 Time.timeScale = 1.0f;
                 Time.fixedDeltaTime = 0.02F;
-                PlayerWinOrder = new int[4,2];
+                PlayerWinOrder = new int[4, 2];
 
                 System.Array.Sort(Players, delegate (IceCreamPlayer m, IceCreamPlayer n)
                 { return m.GetScore().CompareTo(n.GetScore()); });
@@ -58,7 +64,7 @@ public class GameManager : MonoBehaviour
 
                 for (int i = 0; i < Players.Length; ++i)
                 {
-                    PlayerWinOrder[i,0] = Players[i].GetScore();
+                    PlayerWinOrder[i, 0] = Players[i].GetScore();
                     PlayerWinOrder[i, 1] = Players[i].PlayerNumber;
                 }
 
@@ -102,7 +108,7 @@ public class GameManager : MonoBehaviour
             if (!GameChildren[i].activeSelf)
             {
                 GameChildren[i].SetActive(true);
-                int Multiplier = Random.Range(1, 4);
+                int Multiplier = Random.Range(1, 5);
                 Child child = GameChildren[i].GetComponent<Child>();
                 if (Multiplier == 1)
                 {
@@ -116,13 +122,26 @@ public class GameManager : MonoBehaviour
                 {
                     child.SetMultiplier(5);
                 }
+                else if (Multiplier == 4)
+                {
+                    int chance = Random.Range(1, 5);
+                    if (chance == 4)
+                    {
+                        child.SetMultiplier(10);
+                    }
+                    else
+                    {
+                        child.SetMultiplier(2);
+                    }
+                    
+                }
 
                 float xRange = Random.Range(-15, 15);
 
                 float maxZRange = 10;
-                if (xRange > (-10 / 3.0f) && xRange < (10 / 3.0f))
+                if (xRange > -10 && xRange < 10)
                 {
-                    maxZRange = 6;
+                    maxZRange = 1;
                 }
 
                 float zRange = Random.Range(-10,maxZRange);
