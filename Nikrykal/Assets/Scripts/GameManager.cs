@@ -23,6 +23,8 @@ public class GameManager : MonoBehaviour
     private float UnscaledTimeAtStart = 0.0f;
     private bool UnscaledTimeAtStartSet = false;
     public AudioSource Music;
+    private bool X10Cooldownstarted = false;
+    private float X10CooldownTimer;
 
     private IceCreamPlayer[] Players;
     private TextMeshProUGUI[] ScoreTexts;
@@ -83,6 +85,15 @@ public class GameManager : MonoBehaviour
                 GameHasStarted = true;
             }
             return;
+        }
+
+        if (X10Cooldownstarted)
+        {
+            X10CooldownTimer += Time.deltaTime;
+            if (X10CooldownTimer >= 5.0f)
+            {
+                X10Cooldownstarted = false;
+            }
         }
 
         if (GameOver)
@@ -150,7 +161,7 @@ public class GameManager : MonoBehaviour
             }
             else if (MainMenu.ChosenNumPlayers == 3)
             {
-                SpawnTimer = Random.Range(1.0f, 6.0f);
+                SpawnTimer = Random.Range(2.0f, 5.0f);
             }
             else
             {
@@ -189,10 +200,11 @@ public class GameManager : MonoBehaviour
                 }
                 else if (Multiplier == 4)
                 {
-                    int chance = Random.Range(1, 5);
-                    if (chance >= 3)
+                    int chance = Random.Range(1, 10);
+                    if (chance >= 6 && !X10Cooldownstarted)
                     {
                         child.SetMultiplier(10);
+                        X10Cooldownstarted = true;
                     }
                     else
                     {
@@ -203,7 +215,7 @@ public class GameManager : MonoBehaviour
 
                 float xRange = Random.Range(-15, 15);
 
-                float maxZRange = 10;
+                float maxZRange = 8;
                 if (xRange > -10 && xRange < 10)
                 {
                     maxZRange = 1;
