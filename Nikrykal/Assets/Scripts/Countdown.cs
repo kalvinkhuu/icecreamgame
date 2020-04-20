@@ -22,7 +22,6 @@ public class Countdown : MonoBehaviour
         }
         else if (Time.time > Last10seconds)
         {
-            Debug.LogError("Time remaining: " + Last10seconds);
             TimeRemaining.enabled = true;
             TimeRemaining.text = ((int)(DurationOfGame - Time.time)).ToString();
         }
