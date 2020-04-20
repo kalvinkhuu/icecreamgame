@@ -2,17 +2,57 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class SelectPlayers : MonoBehaviour
 {
-    //bool OnePlayer = false;
-    //bool TwoPlayer = false;
-    //bool ThreePlayer = false;
-    //bool FourPlayer = false; 
-    public void PlayGame()
+    int buttonIndex = 0;
 
+    Button[] buttons;
+    public Button SecretBackButton;
+
+    void Awake()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        buttons = GetComponentsInChildren<Button>();
+    }
 
+    void Start()
+    {
+        GotoSelectMenu();
+    }
+
+    public void GotoSelectMenu()
+    {
+        buttonIndex = 0;
+        buttons[buttonIndex].Select();
+        Debug.Log(buttons[buttonIndex]);
+    }
+
+    void Update()
+    {
+        if (hinput.anyGamepad.leftStick.down.justPressed)
+        {
+            if (buttonIndex < buttons.Length - 1)
+            {
+                buttonIndex++;
+                buttons[buttonIndex].Select();
+            }
+        }
+        if (hinput.anyGamepad.leftStick.up.justPressed)
+        {
+            if (buttonIndex > 0)
+            {
+                buttonIndex--;
+                buttons[buttonIndex].Select();
+            }
+        }
+        if (hinput.anyGamepad.A.justPressed)
+        {
+            buttons[buttonIndex].onClick.Invoke();
+        }
+        if (hinput.anyGamepad.B.justPressed)
+        {
+            SecretBackButton.onClick.Invoke();
+        }
     }
 }

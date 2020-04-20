@@ -6,7 +6,7 @@ using TMPro;
 public class Countdown : MonoBehaviour
 {
     private TextMeshProUGUI TimeRemaining;
-    void Start()
+    void Awake()
     {
         TimeRemaining = GetComponent<TextMeshProUGUI>();
         TimeRemaining.enabled = false;
