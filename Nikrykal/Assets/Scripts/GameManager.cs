@@ -148,6 +148,10 @@ public class GameManager : MonoBehaviour
             {
                 SpawnTimer = Random.Range(0.5f, 5.0f);
             }
+            else if (MainMenu.ChosenNumPlayers == 3)
+            {
+                SpawnTimer = Random.Range(1.0f, 6.0f);
+            }
             else
             {
                 SpawnTimer = Random.Range(2.0f, 7.0f);
@@ -186,7 +190,7 @@ public class GameManager : MonoBehaviour
                 else if (Multiplier == 4)
                 {
                     int chance = Random.Range(1, 5);
-                    if (chance == 4)
+                    if (chance >= 3)
                     {
                         child.SetMultiplier(10);
                     }

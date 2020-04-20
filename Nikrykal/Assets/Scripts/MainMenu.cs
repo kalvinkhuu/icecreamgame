@@ -25,18 +25,21 @@ public class MainMenu : MonoBehaviour
 
     public void BackToMainMenu()
     {
+        gameObject.SetActive(true);
         buttonIndex = 0;
         buttons[buttonIndex].Select();
     }
 
     public void BackToMainMenuFromCredits()
     {
+        gameObject.SetActive(true);
         buttonIndex = 2;
         buttons[buttonIndex].Select();
     }
 
     public void BackToMainMenuFromTutorial() 
     {
+        gameObject.SetActive(true);
         buttonIndex = 1;
         buttons[buttonIndex].Select();
     }

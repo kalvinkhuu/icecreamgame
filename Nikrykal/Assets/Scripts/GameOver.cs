@@ -84,12 +84,15 @@ public class GameOver : MonoBehaviour
             }
         }
 
-        if (!SplatPlayed)
+        if (MainMenu.ChosenNumPlayers == 4)
         {
-            if (TimeElapsed >= SplatTime)
+            if (!SplatPlayed)
             {
-                Splat.Play();
-                SplatPlayed = true;
+                if (TimeElapsed >= SplatTime)
+                {
+                    Splat.Play();
+                    SplatPlayed = true;
+                }
             }
         }
 

@@ -17,13 +17,9 @@ public class SelectPlayers : MonoBehaviour
         buttons = GetComponentsInChildren<Button>();
     }
 
-    void Start()
-    {
-        GotoSelectMenu();
-    }
-
     public void GotoSelectMenu()
     {
+        gameObject.SetActive(true);
         buttonIndex = 0;
         buttons[buttonIndex].Select();
         Debug.Log(buttons[buttonIndex]);
@@ -36,7 +32,7 @@ public class SelectPlayers : MonoBehaviour
         if (IgnoreFirstUpdate)
         {
             IgnoreTimer += Time.deltaTime;
-            if (IgnoreTimer > 0.5f)
+            if (IgnoreTimer > 0.25f)
             {
                 IgnoreFirstUpdate = false;
             }
