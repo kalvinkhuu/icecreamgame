@@ -14,11 +14,18 @@ public class IceCreamCone : MonoBehaviour
     public float TimePerScoopDeathNormal = 10.0f;
     public float TimePerScoopDeathHot = 7.0f;
     public bool IsSunLeader;
+    private IceCreamSplat Splat;
     
     // Start is called before the first frame update
+    void Awake()
+    {
+        NumBalls = 0;
+        Splat = GetComponentInChildren<IceCreamSplat>();
+    }
+
     void Start()
     {
-        PickupNewIceCream();
+        gameObject.SetActive(false);   
     }
 
     public void PickupNewIceCream()
@@ -34,6 +41,33 @@ public class IceCreamCone : MonoBehaviour
         }
     }
 
+    private void SplatBall()
+    {
+        if (CurrentBallIndex < Balls.Length)
+        {
+            if (CurrentBallIndex == 0)
+            {
+                Splat.SplatVanilla();
+            }
+            else if (CurrentBallIndex == 1)
+            {
+                Splat.SplatStrawberry();
+            }
+            else if (CurrentBallIndex == 2)
+            {
+                Splat.SplatChocolate();
+            }
+            CurrentBall.SetActive(false);
+            TimeElapsed = 0.0f;
+            CurrentBallIndex++;
+            NumBalls--;
+            if (CurrentBallIndex < Balls.Length)
+            {
+                CurrentBall = Balls[CurrentBallIndex];
+            }
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -42,29 +76,15 @@ public class IceCreamCone : MonoBehaviour
         if ((WeatherSystem.CurrentSunRotationX >= 75 && WeatherSystem.CurrentSunRotationX <= 95) || IsSunLeader) 
         {
             if (TimeElapsed >= TimePerScoopDeathHot)
-            {
-                CurrentBall.SetActive(false);
-                TimeElapsed = 0.0f;
-                if (CurrentBallIndex < Balls.Length - 1)
-                {
-                    CurrentBallIndex++;
-                    NumBalls--;
-                    CurrentBall = Balls[CurrentBallIndex];
-                }
+            {          
+                SplatBall();
             }
         }
         else
         {
             if (TimeElapsed >= TimePerScoopDeathNormal)
             {
-                CurrentBall.SetActive(false);
-                TimeElapsed = 0.0f;
-                if (CurrentBallIndex < Balls.Length - 1)
-                {
-                    CurrentBallIndex++;
-                    NumBalls--;
-                    CurrentBall = Balls[CurrentBallIndex];
-                }
+                SplatBall();
             }
         }
     }

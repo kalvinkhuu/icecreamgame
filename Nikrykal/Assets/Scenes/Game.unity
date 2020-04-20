@@ -208,6 +208,31 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: f0279b80ddedf11479746e88fe7ea483, type: 2}
+    - target: {fileID: 8278150486096163670, guid: 4472089caa991e4459ae179d08c677b1,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 9190375591533795296, guid: 4472089caa991e4459ae179d08c677b1,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9190375591533795296, guid: 4472089caa991e4459ae179d08c677b1,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9190375591533795296, guid: 4472089caa991e4459ae179d08c677b1,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9190375591533795296, guid: 4472089caa991e4459ae179d08c677b1,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4472089caa991e4459ae179d08c677b1, type: 3}
 --- !u!1001 &121541363
@@ -1540,6 +1565,7 @@ MonoBehaviour:
   GameTimeInMinutes: 3
   TimeToStart: {fileID: 1800347655}
   StartTime: 4
+  Music: {fileID: 389257321}
 --- !u!1 &622022211
 GameObject:
   m_ObjectHideFlags: 0
@@ -2363,6 +2389,31 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: 333026ed26cc24946b5cb1513673687c, type: 2}
+    - target: {fileID: 8278150486096163670, guid: 4472089caa991e4459ae179d08c677b1,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 9190375591533795296, guid: 4472089caa991e4459ae179d08c677b1,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9190375591533795296, guid: 4472089caa991e4459ae179d08c677b1,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9190375591533795296, guid: 4472089caa991e4459ae179d08c677b1,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9190375591533795296, guid: 4472089caa991e4459ae179d08c677b1,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4472089caa991e4459ae179d08c677b1, type: 3}
 --- !u!4 &862264811 stripped
@@ -7883,6 +7934,31 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[1]
       value: 
       objectReference: {fileID: 2100000, guid: 4c4154e2b33b21842b221043544b69cd, type: 2}
+    - target: {fileID: 8278150486096163670, guid: 4472089caa991e4459ae179d08c677b1,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 9190375591533795296, guid: 4472089caa991e4459ae179d08c677b1,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9190375591533795296, guid: 4472089caa991e4459ae179d08c677b1,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9190375591533795296, guid: 4472089caa991e4459ae179d08c677b1,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9190375591533795296, guid: 4472089caa991e4459ae179d08c677b1,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4472089caa991e4459ae179d08c677b1, type: 3}
 --- !u!1 &1956218392
@@ -8769,6 +8845,31 @@ PrefabInstance:
     - target: {fileID: 1877999251321438308, guid: 4472089caa991e4459ae179d08c677b1,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8278150486096163670, guid: 4472089caa991e4459ae179d08c677b1,
+        type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 9190375591533795296, guid: 4472089caa991e4459ae179d08c677b1,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9190375591533795296, guid: 4472089caa991e4459ae179d08c677b1,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9190375591533795296, guid: 4472089caa991e4459ae179d08c677b1,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9190375591533795296, guid: 4472089caa991e4459ae179d08c677b1,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
