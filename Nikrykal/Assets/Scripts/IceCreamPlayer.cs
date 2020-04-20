@@ -5,6 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(ThirdPersonUserControl))]
 public class IceCreamPlayer : MonoBehaviour
 {
+    private bool IsSunLeader;
     private IceCreamCone m_IceCreamCone;
     private ThirdPersonUserControl m_ThirdPersonUserControl;
     private IceCreamInteraction m_IceCreamInteraction;
@@ -12,6 +13,7 @@ public class IceCreamPlayer : MonoBehaviour
     private int Score = 0;
     public AudioSource PickupSound;
     public int PlayerNumber = 0;
+    public GameObject Sun;
 
     public int GetScore()
     {
@@ -33,6 +35,13 @@ public class IceCreamPlayer : MonoBehaviour
         {
             m_IceCreamCone.PickupNewIceCream();
         }
+    }
+
+    public void SetIsSunLeader(bool isSunLeader)
+    {
+        IsSunLeader = isSunLeader;
+        m_IceCreamCone.IsSunLeader = IsSunLeader;
+        Sun.SetActive(IsSunLeader);
     }
 
     void OnTriggerEnter(Collider col)
