@@ -1510,7 +1510,7 @@ MonoBehaviour:
   GameChildPrefab: {fileID: 956187052484879005, guid: 3e501b777f906cf4c9371724f6e9d94a,
     type: 3}
   MaxGameChildren: 10
-  GameTimeInMinutes: 0.1
+  GameTimeInMinutes: 3
   TimeToStart: {fileID: 1800347655}
   StartTime: 4
 --- !u!1 &622022211
