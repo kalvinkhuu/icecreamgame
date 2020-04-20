@@ -1511,6 +1511,8 @@ MonoBehaviour:
     type: 3}
   MaxGameChildren: 10
   GameTimeInMinutes: 3
+  TimeToStart: {fileID: 1800347655}
+  StartTime: 3
 --- !u!1 &622022211
 GameObject:
   m_ObjectHideFlags: 0

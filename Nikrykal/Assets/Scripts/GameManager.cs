@@ -17,6 +17,11 @@ public class GameManager : MonoBehaviour
     private float SpawnTimer = 1.0f;
     private bool GameOver = false;
     private float GameOverTimer;
+    private bool GameHasStarted = true;
+    public TextMeshProUGUI TimeToStart;
+    public float StartTime = 3.0f;
+    private float UnscaledTimeAtStart = 0.0f;
+    private bool UnscaledTimeAtStartSet = false;
 
     private IceCreamPlayer[] Players;
     private TextMeshProUGUI[] ScoreTexts;
@@ -36,19 +41,47 @@ public class GameManager : MonoBehaviour
         Players = GetComponentsInChildren<IceCreamPlayer>();
         Canvas canvas = GetComponentInChildren<Canvas>();
         ScoreTexts = canvas.GetComponentsInChildren<TextMeshProUGUI>();
-        Debug.Log("NumPlayersFound: " + Players.Length);
-        Debug.Log("NumScoreTextsFound: " + ScoreTexts.Length);
 
         for (int i = Players.Length - 1; i >= MainMenu.ChosenNumPlayers; i--)
         {
             Players[i].gameObject.SetActive(false);
             ScoreTexts[i].enabled = false;
         }
+        TimeToStart.enabled = true;
+        Time.timeScale = 0.0f;
+        GameHasStarted = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (!GameHasStarted)
+        {
+            if (!UnscaledTimeAtStartSet)
+            {
+                UnscaledTimeAtStart = Time.unscaledTime;
+                UnscaledTimeAtStartSet = true;
+            }            
+            float TimeSoFar = Time.unscaledTime - UnscaledTimeAtStart;
+            int TimeToWrite = (int)(StartTime - TimeSoFar);
+            if (TimeToWrite == 0)
+            {
+                TimeToStart.text = "Go!";
+            }
+            else
+            {
+                TimeToStart.text = TimeToWrite.ToString();
+            }
+
+            if (TimeSoFar > StartTime)
+            {
+                Time.timeScale = 1.0f;
+                TimeToStart.enabled = false;
+                GameHasStarted = true;
+            }
+            return;
+        }
+
         if (GameOver)
         {
             GameOverTimer += Time.unscaledDeltaTime;
