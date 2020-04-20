@@ -36,7 +36,8 @@ public class IceCreamPlayer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (bCanPickupNewIceCream && hinput.gamepad[m_ThirdPersonUserControl.GamepadIndex].A.justPressed)
+        hGamepad PlayerPad = hinput.gamepad[m_ThirdPersonUserControl.GamepadIndex];
+        if (bCanPickupNewIceCream && (PlayerPad.A.justPressed || PlayerPad.B.justPressed || PlayerPad.X.justPressed || PlayerPad.Y.justPressed))
         {
             m_IceCreamCone.PickupNewIceCream();
         }

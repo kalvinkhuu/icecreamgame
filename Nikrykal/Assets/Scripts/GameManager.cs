@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     public float StartTime = 3.0f;
     private float UnscaledTimeAtStart = 0.0f;
     private bool UnscaledTimeAtStartSet = false;
+    public AudioSource Music;
 
     private IceCreamPlayer[] Players;
     private TextMeshProUGUI[] ScoreTexts;
@@ -50,6 +51,7 @@ public class GameManager : MonoBehaviour
         TimeToStart.enabled = true;
         Time.timeScale = 0.0f;
         GameHasStarted = false;
+        Music.pitch = 1.0f;
     }
 
     // Update is called once per frame
@@ -122,6 +124,7 @@ public class GameManager : MonoBehaviour
 
         if (TimeElapsed > GameTimeInMinutes * 60.0f * 0.66f)
         {
+            Music.pitch = 1.2f;
             IceCreamPlayer[] SortedPlayers = (IceCreamPlayer[])Players.Clone();
             System.Array.Sort(SortedPlayers, delegate (IceCreamPlayer m, IceCreamPlayer n)
             { return m.GetScore().CompareTo(n.GetScore()); });
@@ -136,7 +139,18 @@ public class GameManager : MonoBehaviour
         TimeSinceLastSpawn += Time.deltaTime;
         if (TimeSinceLastSpawn > SpawnTimer)
         {
-            SpawnTimer = Random.Range(2.0f, 5.0f);
+            if (MainMenu.ChosenNumPlayers < 2)
+            {
+                SpawnTimer = Random.Range(5.0f, 10.0f);
+            }
+            else if (MainMenu.ChosenNumPlayers == 4)
+            {
+                SpawnTimer = Random.Range(3.0f, 5.0f);
+            }
+            else
+            {
+                SpawnTimer = Random.Range(4.0f, 8.0f);
+            }
             TimeSinceLastSpawn = 0.0f;
             SpawnANewChild();
         }
