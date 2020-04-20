@@ -24,33 +24,41 @@ public class GameOver : MonoBehaviour
         GameObject ThirdPlace = GameObject.Find("3rdPlaceStartingPosition");
         GameObject FourthPlace = GameObject.Find("4thPlaceStartingPosition");
 
-        if (GameManager.PlayerWinOrder != null)
+        if (GameManager.PlayerWinOrder == null)
         {
-            for (int i = 0; i < Players.Length; ++i)
+            Debug.Log("Testing Game Over");
+            GameManager.PlayerWinOrder = new int[4, 2];
+            for (int i = 0; i < 4; i++)
             {
-                int playernumber = i + 1;
-                if (playernumber == GameManager.PlayerWinOrder[0, 1])
-                {
-                    Players[i].transform.position = FirstPlace.transform.position;
-                    Players[i].transform.rotation = FirstPlace.transform.rotation;
-                }
-                else if (playernumber == GameManager.PlayerWinOrder[1, 1])
-                {
-                    Players[i].transform.position = SecondPlace.transform.position;
-                    Players[i].transform.rotation = SecondPlace.transform.rotation;
-                }
-                else if (playernumber == GameManager.PlayerWinOrder[2, 1])
-                {
-                    Players[i].transform.position = ThirdPlace.transform.position;
-                    Players[i].transform.rotation = ThirdPlace.transform.rotation;
-                }
-                else
-                {
-                    Players[i].transform.position = FourthPlace.transform.position;
-                    Players[i].transform.rotation = FourthPlace.transform.rotation;
-                }
-
+                GameManager.PlayerWinOrder[i, 0] = 40 - (i * 10);
+                GameManager.PlayerWinOrder[i, 1] = i + 1;
             }
+        }
+
+        for (int i = 0; i < Players.Length; ++i)
+        {
+            int playernumber = i + 1;
+            if (playernumber == GameManager.PlayerWinOrder[0, 1])
+            {
+                Players[i].transform.position = FirstPlace.transform.position;
+                Players[i].transform.rotation = FirstPlace.transform.rotation;
+            }
+            else if (playernumber == GameManager.PlayerWinOrder[1, 1])
+            {
+                Players[i].transform.position = SecondPlace.transform.position;
+                Players[i].transform.rotation = SecondPlace.transform.rotation;
+            }
+            else if (playernumber == GameManager.PlayerWinOrder[2, 1])
+            {
+                Players[i].transform.position = ThirdPlace.transform.position;
+                Players[i].transform.rotation = ThirdPlace.transform.rotation;
+            }
+            else
+            {
+                Players[i].transform.position = FourthPlace.transform.position;
+                Players[i].transform.rotation = FourthPlace.transform.rotation;
+            }
+
         }
     }
 
