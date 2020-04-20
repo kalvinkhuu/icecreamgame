@@ -13,12 +13,14 @@ public class MainMenu : MonoBehaviour
     Button PlayButton;
     Button CreditsButton;
     bool PlaybuttonSelected = true;
+    Button TutorialButton;
 
     void Awake()
     {
         Button [] buttons = GetComponentsInChildren<Button>();
         PlayButton = buttons[0];
         CreditsButton = buttons[1];
+        TutorialButton = buttons[2];
     }
 
     void Start()
@@ -35,6 +37,12 @@ public class MainMenu : MonoBehaviour
     {
         CreditsButton.Select();
     }
+
+    public void BackToMainMenuFromTutorial() 
+    {
+        TutorialButton.Select();
+    }
+     
 
     void Update()
     {
