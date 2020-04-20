@@ -14,6 +14,10 @@ public class GameOver : MonoBehaviour
         TimeElapsed = 0.0f;
 
         Players = GetComponentsInChildren<IceCreamPlayer>();
+        for (int i = Players.Length; i >= MainMenu.ChosenNumPlayers; i--)
+        {
+            Players[i].gameObject.SetActive(false);
+        }
 
         Debug.Log("Winner: Player" + GameManager.PlayerWinOrder[0, 1]);
         GameObject FirstPlace = GameObject.Find("1stPlaceStartingPosition");
