@@ -21,9 +21,13 @@ public class IceCreamPlayer : MonoBehaviour
         return Score;
     }
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         m_IceCreamCone = GetComponentInChildren<IceCreamCone>();
+    }
+
+    void Start()
+    {
         m_ThirdPersonUserControl = GetComponent<ThirdPersonUserControl>();
         GameObject IceCreamTruck = GameObject.Find("IceCreamTruck");
         if (IceCreamTruck != null)
@@ -60,7 +64,7 @@ public class IceCreamPlayer : MonoBehaviour
         }
         else if (child != null)
         {
-            if (m_IceCreamCone.GetNumBalls() > 0)
+            if (m_IceCreamCone.GetNumBalls() >= 0 && m_IceCreamCone.gameObject.activeSelf)
             {
                 int ScoreToAdd = m_IceCreamCone.GetNumBalls() * child.GetMultiplier();
                 Debug.Log("Score To Add: " + ScoreToAdd);
