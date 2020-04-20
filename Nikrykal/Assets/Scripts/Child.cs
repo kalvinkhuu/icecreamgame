@@ -36,7 +36,7 @@ public class Child : MonoBehaviour
             TimeAlive += Time.deltaTime;
             if (Multiplier == 10)
             {
-                if (TimeAlive > 5.0f)
+                if (TimeAlive > 7.0f)
                 {
                     gameObject.SetActive(false);
                     X10Sound.Stop();

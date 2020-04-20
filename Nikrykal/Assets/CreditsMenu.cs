@@ -21,7 +21,6 @@ public class CreditsMenu : MonoBehaviour
     public void GotoCreditsMenu()
     {
         gameObject.SetActive(true);
-        BackButton.Select();
         IgnoreFirstUpdate = true;
         IgnoreTimer = 0.0f;
     }
@@ -33,6 +32,7 @@ public class CreditsMenu : MonoBehaviour
             IgnoreTimer += Time.deltaTime;
             if (IgnoreTimer > 0.25f)
             {
+                BackButton.Select();
                 IgnoreFirstUpdate = false;
             }
             return;

@@ -13,6 +13,9 @@ public class MainMenu : MonoBehaviour
     Button[] buttons;
     int buttonIndex = 0;
 
+    private bool IgnoreFirstUpdate = true;
+    private float IgnoreTimer = 0.0f;
+
     void Awake()
     {
         buttons = GetComponentsInChildren<Button>();
@@ -27,26 +30,34 @@ public class MainMenu : MonoBehaviour
     {
         gameObject.SetActive(true);
         buttonIndex = 0;
-        buttons[buttonIndex].Select();
     }
 
     public void BackToMainMenuFromCredits()
     {
         gameObject.SetActive(true);
         buttonIndex = 2;
-        buttons[buttonIndex].Select();
     }
 
     public void BackToMainMenuFromTutorial() 
     {
         gameObject.SetActive(true);
         buttonIndex = 1;
-        buttons[buttonIndex].Select();
     }
      
 
     void Update()
     {
+        if (IgnoreFirstUpdate)
+        {
+            IgnoreTimer += Time.deltaTime;
+            if (IgnoreTimer > 0.25f)
+            {
+                buttons[buttonIndex].Select();
+                IgnoreFirstUpdate = false;
+            }
+            return;
+        }
+
         if (hinput.anyGamepad.leftStick.down.justPressed)
         {
             if (buttonIndex < buttons.Length - 1)

@@ -21,8 +21,6 @@ public class SelectPlayers : MonoBehaviour
     {
         gameObject.SetActive(true);
         buttonIndex = 0;
-        buttons[buttonIndex].Select();
-        Debug.Log(buttons[buttonIndex]);
         IgnoreFirstUpdate = true;
         IgnoreTimer = 0.0f;
     }
@@ -34,6 +32,7 @@ public class SelectPlayers : MonoBehaviour
             IgnoreTimer += Time.deltaTime;
             if (IgnoreTimer > 0.25f)
             {
+                buttons[buttonIndex].Select();
                 IgnoreFirstUpdate = false;
             }
             return;
