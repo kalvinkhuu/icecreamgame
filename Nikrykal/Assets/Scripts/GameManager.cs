@@ -51,6 +51,7 @@ public class GameManager : MonoBehaviour
         TimeToStart.enabled = true;
         Time.timeScale = 0.0f;
         GameHasStarted = false;
+        UnscaledTimeAtStartSet = false;
         Music.pitch = 1.0f;
     }
 
