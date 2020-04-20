@@ -5,6 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class GameOver : MonoBehaviour
 {
+    public AudioSource Drumroll;
+    public AudioSource Tada;
+    public AudioSource Splat;
+    private bool TadaPlayed = false;
+    private bool SplatPlayed = false;
+
+    public float SplatTime = 2.0f;
+    public float TadaTime = 3.0f;
     public float TimeToGoBackToMenu = 10.0f;
     private float TimeElapsed;
     private IceCreamPlayer[] Players;
@@ -66,6 +74,25 @@ public class GameOver : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!TadaPlayed)
+        {
+            if (TimeElapsed >= TadaTime)
+            {
+                Drumroll.Stop();
+                Tada.Play();
+                TadaPlayed = true;
+            }
+        }
+
+        if (!SplatPlayed)
+        {
+            if (TimeElapsed >= SplatTime)
+            {
+                Splat.Play();
+                SplatPlayed = true;
+            }
+        }
+
         TimeElapsed += Time.deltaTime;
         if (TimeElapsed >= TimeToGoBackToMenu)
         {
