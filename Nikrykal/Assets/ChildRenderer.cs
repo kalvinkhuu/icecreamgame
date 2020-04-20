@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class ChildRenderer : MonoBehaviour
 {
+    Renderer myrenderer;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        
+        myrenderer = GetComponent<Renderer>();
     }
 
     // Update is called once per frame
@@ -16,9 +17,18 @@ public class ChildRenderer : MonoBehaviour
         
     }
 
+    public bool GetVisibility()
+    {
+        return myrenderer.enabled;
+    }
+
+    public void SetVisibility(bool visible)
+    {
+        myrenderer.enabled = visible;
+    }
+
     public void SetMaterial(ref Material mat)
     {
-        Renderer renderer = GetComponent<Renderer>();
-        renderer.material = mat;
+        myrenderer.material = mat;
     }
 }

@@ -38,21 +38,23 @@ public class Child : MonoBehaviour
             {
                 if (TimeAlive > 5.0f)
                 {
-                    TimeAlive = 0.0f;
                     gameObject.SetActive(false);
                     X10Sound.Stop();
                 }
-            }
-            else if (!SadSoundPlayed && TimeAlive > 15.0f)
-            {
-                SadSound.Play();
-                SadSoundPlayed = true;
             }
             else if (TimeAlive > 20.0f)
             {
                 gameObject.SetActive(false);
             }
-            
+            else if (TimeAlive > 15.0f)
+            {
+                if (!SadSoundPlayed)
+                {
+                    SadSound.Play();
+                    SadSoundPlayed = true;
+                }
+                childRenderer.SetVisibility(!childRenderer.GetVisibility());
+            }
         }
         currentRotationX += Time.deltaTime * SpinSpeed;
         transform.localRotation = Quaternion.AngleAxis(currentRotationX, new Vector3(0.0f, 1.0f, 0.0f));
@@ -66,7 +68,9 @@ public class Child : MonoBehaviour
 
     public void SetMultiplier(int NewMultiplier)
     {
+        childRenderer.SetVisibility(true);
         SadSoundPlayed = false;
+        TimeAlive = 0.0f;
         Multiplier = NewMultiplier;
         if (Multiplier == 2)
         {
