@@ -14,6 +14,7 @@ public class IceCreamPlayer : MonoBehaviour
     public AudioSource PickupSound;
     public int PlayerNumber = 0;
     public GameObject Sun;
+    public GameObject InteractButton;
 
     public int GetScore()
     {
@@ -26,6 +27,7 @@ public class IceCreamPlayer : MonoBehaviour
         m_ThirdPersonUserControl = GetComponent<ThirdPersonUserControl>();
         m_IceCreamInteraction = GameObject.Find("IceCreamTruck").GetComponentInChildren<IceCreamInteraction>();
         Debug.Log("IceCreamInteraction: " + m_IceCreamInteraction.name);
+        InteractButton.SetActive(false);
     }
 
     // Update is called once per frame
@@ -50,6 +52,7 @@ public class IceCreamPlayer : MonoBehaviour
         if (col.name == m_IceCreamInteraction.name)
         {
             bCanPickupNewIceCream = true;
+            InteractButton.SetActive(bCanPickupNewIceCream);
         }
         else if (child != null)
         {
@@ -71,6 +74,7 @@ public class IceCreamPlayer : MonoBehaviour
         if (col.name == m_IceCreamInteraction.name)
         {
             bCanPickupNewIceCream = false;
+            InteractButton.SetActive(bCanPickupNewIceCream);
         }
     }
 }
