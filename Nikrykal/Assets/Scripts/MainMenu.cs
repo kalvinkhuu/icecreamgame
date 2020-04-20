@@ -10,51 +10,61 @@ public class MainMenu : MonoBehaviour
 {
     public static int ChosenNumPlayers = 4;
 
-    Button PlayButton;
-    Button CreditsButton;
-    bool PlaybuttonSelected = true;
+    Button[] buttons;
+    int buttonIndex = 0;
 
     void Awake()
     {
-        Button [] buttons = GetComponentsInChildren<Button>();
-        PlayButton = buttons[0];
-        CreditsButton = buttons[1];
+        buttons = GetComponentsInChildren<Button>();
     }
 
     void Start()
     {
-        PlayButton.Select();
+        BackToMainMenu();
     }
 
     public void BackToMainMenu()
     {
-        PlayButton.Select();
+        buttonIndex = 0;
+        buttons[buttonIndex].Select();
     }
 
     public void BackToMainMenuFromCredits()
     {
-        CreditsButton.Select();
+        buttonIndex = 2;
+        buttons[buttonIndex].Select();
     }
+
+    public void BackToMainMenuFromTutorial() 
+    {
+        buttonIndex = 1;
+        buttons[buttonIndex].Select();
+    }
+     
 
     void Update()
     {
         if (hinput.anyGamepad.leftStick.down.justPressed)
         {
-            CreditsButton.Select();
+            if (buttonIndex < buttons.Length - 1)
+            {
+                buttonIndex++;
+                buttons[buttonIndex].Select();
+            }
         }
         if (hinput.anyGamepad.leftStick.up.justPressed)
         {
-            PlayButton.Select();
+            if (buttonIndex > 0)
+            {
+                buttonIndex--;
+                buttons[buttonIndex].Select();
+            }
         }
         if (hinput.anyGamepad.A.justPressed)
         {
-            if (PlaybuttonSelected)
+            if (hinput.anyGamepad.A.justPressed)
             {
-                PlayButton.onClick.Invoke();
-            }
-            else
-            {
-                CreditsButton.onClick.Invoke();
+                buttons[buttonIndex].onClick.Invoke();
             }
         }
     }

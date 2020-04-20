@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     public GameObject GameChildPrefab;
 
     private GameObject [] GameChildren;
-    public int MaxGameChildren = 6;
+    private int MaxGameChildren = 6;
     public float GameTimeInMinutes = 3;
     public static float GameTimeInSeconds;
     private float TimeElapsed = 0.0f;
@@ -51,6 +51,7 @@ public class GameManager : MonoBehaviour
         TimeToStart.enabled = true;
         Time.timeScale = 0.0f;
         GameHasStarted = false;
+        UnscaledTimeAtStartSet = false;
         Music.pitch = 1.0f;
     }
 
@@ -141,15 +142,15 @@ public class GameManager : MonoBehaviour
         {
             if (MainMenu.ChosenNumPlayers < 2)
             {
-                SpawnTimer = Random.Range(5.0f, 10.0f);
+                SpawnTimer = Random.Range(2.0f, 10.0f);
             }
             else if (MainMenu.ChosenNumPlayers == 4)
             {
-                SpawnTimer = Random.Range(3.0f, 5.0f);
+                SpawnTimer = Random.Range(0.5f, 5.0f);
             }
             else
             {
-                SpawnTimer = Random.Range(4.0f, 8.0f);
+                SpawnTimer = Random.Range(2.0f, 7.0f);
             }
             TimeSinceLastSpawn = 0.0f;
             SpawnANewChild();
