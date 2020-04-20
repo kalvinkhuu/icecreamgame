@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class CreditsMenu : MonoBehaviour
 {
     Button BackButton;
+    private bool IgnoreFirstUpdate = true;
 
     void Awake()
     {
@@ -20,10 +21,17 @@ public class CreditsMenu : MonoBehaviour
     public void GotoCreditsMenu()
     {
         BackButton.Select();
+        IgnoreFirstUpdate = true;
     }
 
     void Update()
     {
+        if (IgnoreFirstUpdate)
+        {
+            IgnoreFirstUpdate = false;
+            return;
+        }
+
         if (hinput.anyGamepad.A.justPressed || hinput.anyGamepad.B.justPressed)
         {
             BackButton.onClick.Invoke();
