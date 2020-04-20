@@ -14,44 +14,44 @@ public class GameOver : MonoBehaviour
         TimeElapsed = 0.0f;
 
         Players = GetComponentsInChildren<IceCreamPlayer>();
-        for (int i = Players.Length; i >= MainMenu.ChosenNumPlayers; i--)
+        for (int i = Players.Length - 1; i >= MainMenu.ChosenNumPlayers; i--)
         {
             Players[i].gameObject.SetActive(false);
         }
 
-        Debug.Log("Winner: Player" + GameManager.PlayerWinOrder[0, 1]);
         GameObject FirstPlace = GameObject.Find("1stPlaceStartingPosition");
         GameObject SecondPlace = GameObject.Find("2ndPlaceStartingPosition");
         GameObject ThirdPlace = GameObject.Find("3rdPlaceStartingPosition");
         GameObject FourthPlace = GameObject.Find("4thPlaceStartingPosition");
-        for (int i = 0; i < Players.Length; ++i)
+
+        if (GameManager.PlayerWinOrder != null)
         {
-            int playernumber = i + 1;
-            if (playernumber == GameManager.PlayerWinOrder[0, 1])
+            for (int i = 0; i < Players.Length; ++i)
             {
-                Players[i].transform.position = FirstPlace.transform.position;
-                Players[i].transform.rotation = FirstPlace.transform.rotation;
+                int playernumber = i + 1;
+                if (playernumber == GameManager.PlayerWinOrder[0, 1])
+                {
+                    Players[i].transform.position = FirstPlace.transform.position;
+                    Players[i].transform.rotation = FirstPlace.transform.rotation;
+                }
+                else if (playernumber == GameManager.PlayerWinOrder[1, 1])
+                {
+                    Players[i].transform.position = SecondPlace.transform.position;
+                    Players[i].transform.rotation = SecondPlace.transform.rotation;
+                }
+                else if (playernumber == GameManager.PlayerWinOrder[2, 1])
+                {
+                    Players[i].transform.position = ThirdPlace.transform.position;
+                    Players[i].transform.rotation = ThirdPlace.transform.rotation;
+                }
+                else
+                {
+                    Players[i].transform.position = FourthPlace.transform.position;
+                    Players[i].transform.rotation = FourthPlace.transform.rotation;
+                }
+
             }
-            else if (playernumber == GameManager.PlayerWinOrder[1, 1]) 
-            {
-                Players[i].transform.position = SecondPlace.transform.position;
-                Players[i].transform.rotation = SecondPlace.transform.rotation;
-            }
-            else if (playernumber == GameManager.PlayerWinOrder[2, 1])
-            {
-                Players[i].transform.position = ThirdPlace.transform.position;
-                Players[i].transform.rotation = ThirdPlace.transform.rotation;
-            }
-            else 
-            {
-                Players[i].transform.position = FourthPlace.transform.position;
-                Players[i].transform.rotation = FourthPlace.transform.rotation;
-            }
-    
         }
-
-
-
     }
 
 
@@ -64,7 +64,5 @@ public class GameOver : MonoBehaviour
             SceneManager.LoadScene(0);
 
         }
-
-
     }
 }

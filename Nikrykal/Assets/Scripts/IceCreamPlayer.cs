@@ -14,6 +14,7 @@ public class IceCreamPlayer : MonoBehaviour
     public AudioSource PickupSound;
     public int PlayerNumber = 0;
     public GameObject Sun;
+    public GameObject InteractButton;
 
     public int GetScore()
     {
@@ -24,14 +25,19 @@ public class IceCreamPlayer : MonoBehaviour
     {
         m_IceCreamCone = GetComponentInChildren<IceCreamCone>();
         m_ThirdPersonUserControl = GetComponent<ThirdPersonUserControl>();
-        m_IceCreamInteraction = GameObject.Find("IceCreamTruck").GetComponentInChildren<IceCreamInteraction>();
-        Debug.Log("IceCreamInteraction: " + m_IceCreamInteraction.name);
+        GameObject IceCreamTruck = GameObject.Find("IceCreamTruck");
+        if (IceCreamTruck != null)
+        {
+            m_IceCreamInteraction = IceCreamTruck.GetComponentInChildren<IceCreamInteraction>();
+        }
+        InteractButton.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (bCanPickupNewIceCream && hinput.gamepad[m_ThirdPersonUserControl.GamepadIndex].A.justPressed)
+        hGamepad PlayerPad = hinput.gamepad[m_ThirdPersonUserControl.GamepadIndex];
+        if (bCanPickupNewIceCream && (PlayerPad.A.justPressed || PlayerPad.B.justPressed || PlayerPad.X.justPressed || PlayerPad.Y.justPressed))
         {
             m_IceCreamCone.PickupNewIceCream();
         }
@@ -47,9 +53,10 @@ public class IceCreamPlayer : MonoBehaviour
     void OnTriggerEnter(Collider col)
     {
         Child child = col.GetComponent<Child>();
-        if (col.name == m_IceCreamInteraction.name)
+        if (m_IceCreamInteraction != null && col.name == m_IceCreamInteraction.name)
         {
             bCanPickupNewIceCream = true;
+            InteractButton.SetActive(bCanPickupNewIceCream);
         }
         else if (child != null)
         {
@@ -68,9 +75,10 @@ public class IceCreamPlayer : MonoBehaviour
 
     void OnTriggerExit(Collider col)
     {
-        if (col.name == m_IceCreamInteraction.name)
+        if (m_IceCreamInteraction != null && col.name == m_IceCreamInteraction.name)
         {
             bCanPickupNewIceCream = false;
+            InteractButton.SetActive(bCanPickupNewIceCream);
         }
     }
 }
