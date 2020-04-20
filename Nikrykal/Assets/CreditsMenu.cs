@@ -7,6 +7,7 @@ public class CreditsMenu : MonoBehaviour
 {
     Button BackButton;
     private bool IgnoreFirstUpdate = true;
+    private float IgnoreTimer = 0.0f;
 
     void Awake()
     {
@@ -22,13 +23,18 @@ public class CreditsMenu : MonoBehaviour
     {
         BackButton.Select();
         IgnoreFirstUpdate = true;
+        IgnoreTimer = 0.0f;
     }
 
     void Update()
     {
         if (IgnoreFirstUpdate)
         {
-            IgnoreFirstUpdate = false;
+            IgnoreTimer += Time.deltaTime;
+            if (IgnoreTimer > 0.5f)
+            {
+                IgnoreFirstUpdate = false;
+            }
             return;
         }
 

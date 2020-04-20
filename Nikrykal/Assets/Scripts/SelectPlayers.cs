@@ -10,6 +10,7 @@ public class SelectPlayers : MonoBehaviour
 
     Button[] buttons;
     public Button SecretBackButton;
+    private float IgnoreTimer = 0.0f;
     private bool IgnoreFirstUpdate = true;
     void Awake()
     {
@@ -27,13 +28,18 @@ public class SelectPlayers : MonoBehaviour
         buttons[buttonIndex].Select();
         Debug.Log(buttons[buttonIndex]);
         IgnoreFirstUpdate = true;
+        IgnoreTimer = 0.0f;
     }
 
     void Update()
     {
         if (IgnoreFirstUpdate)
         {
-            IgnoreFirstUpdate = false;
+            IgnoreTimer += Time.deltaTime;
+            if (IgnoreTimer > 0.5f)
+            {
+                IgnoreFirstUpdate = false;
+            }
             return;
         }
 

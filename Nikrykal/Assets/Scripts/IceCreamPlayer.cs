@@ -10,6 +10,7 @@ public class IceCreamPlayer : MonoBehaviour
     private IceCreamCone m_IceCreamCone;
     private TextMeshPro PlusScore;
     private ThirdPersonUserControl m_ThirdPersonUserControl;
+    private ThirdPersonCharacter m_ThirdPersonCharacter;
     private IceCreamInteraction m_IceCreamInteraction;
     private bool bShowPlusScore = false;
     private float PlusScoreTimer = 0.0f;
@@ -33,6 +34,7 @@ public class IceCreamPlayer : MonoBehaviour
 
     void Start()
     {
+        m_ThirdPersonCharacter = GetComponent<ThirdPersonCharacter>();
         m_ThirdPersonUserControl = GetComponent<ThirdPersonUserControl>();
         GameObject IceCreamTruck = GameObject.Find("IceCreamTruck");
         if (IceCreamTruck != null)
@@ -68,6 +70,15 @@ public class IceCreamPlayer : MonoBehaviour
         IsSunLeader = isSunLeader;
         m_IceCreamCone.IsSunLeader = IsSunLeader;
         Sun.SetActive(IsSunLeader);
+
+        if (IsSunLeader && MainMenu.ChosenNumPlayers != 1)
+        {
+            m_ThirdPersonCharacter.m_MoveSpeedMultiplier = 0.7f;
+        }
+        else
+        {
+            m_ThirdPersonCharacter.m_MoveSpeedMultiplier = 1.0f;
+        }
     }
 
     void OnTriggerEnter(Collider col)
