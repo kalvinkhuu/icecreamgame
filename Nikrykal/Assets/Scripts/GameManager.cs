@@ -95,7 +95,7 @@ public class GameManager : MonoBehaviour
             SpawnANewChild();
         }
 
-        for (int i = 0; i < ScoreTexts.Length; ++i)
+        for (int i = 0; i < ScoreTexts.Length && i < Players.Length; ++i)
         {
             ScoreTexts[i].text = "Player " + (i + 1) + ":   " + Players[i].GetScore().ToString();
         }

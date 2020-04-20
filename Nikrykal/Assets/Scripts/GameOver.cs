@@ -22,17 +22,18 @@ public class GameOver : MonoBehaviour
         GameObject FourthPlace = GameObject.Find("4thPlaceStartingPosition");
         for (int i = 0; i < Players.Length; ++i)
         {
-            if (Players[i].PlayerNumber == GameManager.PlayerWinOrder[0, 1])
+            int playernumber = i + 1;
+            if (playernumber == GameManager.PlayerWinOrder[0, 1])
             {
                 Players[i].transform.position = FirstPlace.transform.position;
                 Players[i].transform.rotation = FirstPlace.transform.rotation;
             }
-            else if (Players[i].PlayerNumber == GameManager.PlayerWinOrder[1, 1]) 
+            else if (playernumber == GameManager.PlayerWinOrder[1, 1]) 
             {
                 Players[i].transform.position = SecondPlace.transform.position;
                 Players[i].transform.rotation = SecondPlace.transform.rotation;
             }
-            else if (Players[i].PlayerNumber == GameManager.PlayerWinOrder[2, 1])
+            else if (playernumber == GameManager.PlayerWinOrder[2, 1])
             {
                 Players[i].transform.position = ThirdPlace.transform.position;
                 Players[i].transform.rotation = ThirdPlace.transform.rotation;
