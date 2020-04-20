@@ -60,12 +60,9 @@ public class MainMenu : MonoBehaviour
                 buttons[buttonIndex].Select();
             }
         }
-        if (hinput.anyGamepad.A.justPressed)
+        if (hinput.anyGamepad.A.justReleased)
         {
-            if (hinput.anyGamepad.A.justPressed)
-            {
-                buttons[buttonIndex].onClick.Invoke();
-            }
+            buttons[buttonIndex].onClick.Invoke();
         }
     }
 

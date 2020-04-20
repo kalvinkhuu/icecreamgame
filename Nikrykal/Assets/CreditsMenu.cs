@@ -38,7 +38,7 @@ public class CreditsMenu : MonoBehaviour
             return;
         }
 
-        if (hinput.anyGamepad.A.justPressed || hinput.anyGamepad.B.justPressed)
+        if (hinput.anyGamepad.B.justPressed)
         {
             BackButton.onClick.Invoke();
         }
