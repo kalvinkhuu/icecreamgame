@@ -25,8 +25,11 @@ public class IceCreamPlayer : MonoBehaviour
     {
         m_IceCreamCone = GetComponentInChildren<IceCreamCone>();
         m_ThirdPersonUserControl = GetComponent<ThirdPersonUserControl>();
-        m_IceCreamInteraction = GameObject.Find("IceCreamTruck").GetComponentInChildren<IceCreamInteraction>();
-        Debug.Log("IceCreamInteraction: " + m_IceCreamInteraction.name);
+        GameObject IceCreamTruck = GameObject.Find("IceCreamTruck");
+        if (IceCreamTruck != null)
+        {
+            m_IceCreamInteraction = IceCreamTruck.GetComponentInChildren<IceCreamInteraction>();
+        }
         InteractButton.SetActive(false);
     }
 
@@ -49,7 +52,7 @@ public class IceCreamPlayer : MonoBehaviour
     void OnTriggerEnter(Collider col)
     {
         Child child = col.GetComponent<Child>();
-        if (col.name == m_IceCreamInteraction.name)
+        if (m_IceCreamInteraction != null && col.name == m_IceCreamInteraction.name)
         {
             bCanPickupNewIceCream = true;
             InteractButton.SetActive(bCanPickupNewIceCream);
@@ -71,7 +74,7 @@ public class IceCreamPlayer : MonoBehaviour
 
     void OnTriggerExit(Collider col)
     {
-        if (col.name == m_IceCreamInteraction.name)
+        if (m_IceCreamInteraction != null && col.name == m_IceCreamInteraction.name)
         {
             bCanPickupNewIceCream = false;
             InteractButton.SetActive(bCanPickupNewIceCream);
