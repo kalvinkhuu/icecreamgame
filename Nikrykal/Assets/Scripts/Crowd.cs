@@ -23,6 +23,11 @@ public class Crowd : MonoBehaviour
 
     void OnValidate()
     {
+        SetupCrowd();
+    }
+
+    void SetupCrowd()
+    {
         CrowdPeople = GetComponentsInChildren<CrowdPerson>();
         int index = 0;
         foreach (CrowdPerson Person in CrowdPeople)
@@ -34,7 +39,7 @@ public class Crowd : MonoBehaviour
 
     void Start()
     {
-        PossibleTimeToMove = Random.Range(1, 10);
+        SetupCrowd();
     }
 
     // Update is called once per frame

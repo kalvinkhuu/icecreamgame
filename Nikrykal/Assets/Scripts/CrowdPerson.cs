@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class CrowdPerson : MonoBehaviour
 {
-    public string Name = "Larry";
-    private Vector3 StartPosition;
     private Vector3 PlaceToGoTo;
     public float MovementSpeed = 0.3f;
     private bool GoToAlternatePosition = false;
@@ -13,7 +11,6 @@ public class CrowdPerson : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartPosition = transform.localPosition;
     }
 
     public void ChangeToAlternatePosition(Vector3 NewPlaceToGo)
@@ -31,7 +28,5 @@ public class CrowdPerson : MonoBehaviour
             Vector3 DesiredPosition = Vector3.Lerp(CurrentPosition, PlaceToGoTo, Time.deltaTime * MovementSpeed);
             transform.localPosition = DesiredPosition;
         }
-
-
     }
 }

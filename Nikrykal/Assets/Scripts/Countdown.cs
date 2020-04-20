@@ -18,7 +18,7 @@ public class Countdown : MonoBehaviour
         float Last10seconds = GameManager.GameTimeInSeconds - 10.0f;
         if (Time.time > DurationOfGame)
         {
-            TimeRemaining.text = "Time is up!";
+            TimeRemaining.text = "Time's up!";
         }
         else if (Time.time > Last10seconds)
         {
