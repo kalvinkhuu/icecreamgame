@@ -93,7 +93,7 @@ public class IceCreamPlayer : MonoBehaviour
         {
             if (m_IceCreamCone.GetNumBalls() >= 0 && m_IceCreamCone.gameObject.activeSelf)
             {
-                int ScoreToAdd = m_IceCreamCone.GetNumBalls() * child.GetMultiplier();
+                int ScoreToAdd = (int)((float)m_IceCreamCone.GetNumBalls() * (float)child.GetMultiplier() * (IsSunLeader ? 0.75f : 1.0f));
                 Score += ScoreToAdd;
                 child.gameObject.SetActive(false);
                 m_IceCreamCone.GiveIceCreamToChild();
