@@ -124,7 +124,7 @@ public class GameManager : MonoBehaviour
 
         if (TimeElapsed > GameTimeInMinutes * 60.0f * 0.66f)
         {
-            Music.pitch = 1.2f;
+            Music.pitch = 1.3f;
             IceCreamPlayer[] SortedPlayers = (IceCreamPlayer[])Players.Clone();
             System.Array.Sort(SortedPlayers, delegate (IceCreamPlayer m, IceCreamPlayer n)
             { return m.GetScore().CompareTo(n.GetScore()); });

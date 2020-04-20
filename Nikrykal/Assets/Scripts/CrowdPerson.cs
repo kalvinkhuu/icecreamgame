@@ -17,7 +17,6 @@ public class CrowdPerson : MonoBehaviour
     {
         GoToAlternatePosition = true;
         PlaceToGoTo = NewPlaceToGo;
-        Debug.Log("CrowdPerson Moving to: " + PlaceToGoTo.ToString());
     }
 
     // Update is called once per frame
@@ -27,7 +26,6 @@ public class CrowdPerson : MonoBehaviour
         {
             Vector3 CurrentPosition = transform.localPosition;
             Vector3 DesiredPosition = Vector3.Lerp(CurrentPosition, PlaceToGoTo, Time.deltaTime * MovementSpeed);
-            Debug.Log("DesiredPosition: " + DesiredPosition.ToString());
             transform.localPosition = DesiredPosition;
         }
     }
