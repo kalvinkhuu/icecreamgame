@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class SelectPlayers : MonoBehaviour
 {
@@ -38,7 +39,11 @@ public class SelectPlayers : MonoBehaviour
             return;
         }
 
-        if (hinput.anyGamepad.leftStick.down.justPressed)
+        var gamepad = Gamepad.current;
+        if (gamepad == null)
+            return; // No gamepad connected.
+
+        if (gamepad.leftStick.down.wasPressedThisFrame || Keyboard.current.sKey.wasPressedThisFrame || Keyboard.current.downArrowKey.wasPressedThisFrame)
         {
             if (buttonIndex < buttons.Length - 1)
             {
@@ -46,7 +51,7 @@ public class SelectPlayers : MonoBehaviour
                 buttons[buttonIndex].Select();
             }
         }
-        if (hinput.anyGamepad.leftStick.up.justPressed)
+        else if (gamepad.leftStick.up.wasPressedThisFrame || Keyboard.current.wKey.wasPressedThisFrame || Keyboard.current.upArrowKey.wasPressedThisFrame)
         {
             if (buttonIndex > 0)
             {
@@ -54,11 +59,12 @@ public class SelectPlayers : MonoBehaviour
                 buttons[buttonIndex].Select();
             }
         }
-        if (hinput.anyGamepad.A.justPressed)
+
+        if (gamepad.aButton.wasPressedThisFrame || Keyboard.current.spaceKey.wasPressedThisFrame || Keyboard.current.enterKey.wasPressedThisFrame)
         {
             buttons[buttonIndex].onClick.Invoke();
         }
-        if (hinput.anyGamepad.B.justPressed)
+        else if (gamepad.bButton.wasPressedThisFrame || Keyboard.current.backspaceKey.wasPressedThisFrame || Keyboard.current.escapeKey.wasPressedThisFrame)
         {
             SecretBackButton.onClick.Invoke();
         }

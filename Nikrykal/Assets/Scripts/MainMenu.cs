@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-
-
+using UnityEngine.InputSystem;
 
 public class MainMenu : MonoBehaviour
 {
@@ -43,7 +42,6 @@ public class MainMenu : MonoBehaviour
         gameObject.SetActive(true);
         buttonIndex = 1;
     }
-     
 
     void Update()
     {
@@ -58,7 +56,11 @@ public class MainMenu : MonoBehaviour
             return;
         }
 
-        if (hinput.anyGamepad.leftStick.down.justPressed)
+        var gamepad = Gamepad.current;
+        if (gamepad == null)
+            return; // No gamepad connected.
+
+        if (gamepad.leftStick.down.wasPressedThisFrame || Keyboard.current.sKey.wasPressedThisFrame || Keyboard.current.downArrowKey.wasPressedThisFrame)
         {
             if (buttonIndex < buttons.Length - 1)
             {
@@ -66,7 +68,7 @@ public class MainMenu : MonoBehaviour
                 buttons[buttonIndex].Select();
             }
         }
-        if (hinput.anyGamepad.leftStick.up.justPressed)
+        else if (gamepad.leftStick.up.wasPressedThisFrame || Keyboard.current.wKey.wasPressedThisFrame || Keyboard.current.upArrowKey.wasPressedThisFrame)
         {
             if (buttonIndex > 0)
             {
@@ -74,7 +76,8 @@ public class MainMenu : MonoBehaviour
                 buttons[buttonIndex].Select();
             }
         }
-        if (hinput.anyGamepad.A.justReleased)
+
+        if (gamepad.aButton.wasPressedThisFrame || Keyboard.current.spaceKey.wasPressedThisFrame || Keyboard.current.enterKey.wasPressedThisFrame)
         {
             buttons[buttonIndex].onClick.Invoke();
         }

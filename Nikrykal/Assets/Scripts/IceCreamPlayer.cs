@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using TMPro;
 
 [RequireComponent(typeof(ThirdPersonUserControl))]
@@ -58,8 +59,20 @@ public class IceCreamPlayer : MonoBehaviour
                 PlusScore.enabled = false;
             }
         }
-        hGamepad PlayerPad = hinput.gamepad[m_ThirdPersonUserControl.GamepadIndex];
-        if (bCanPickupNewIceCream && (PlayerPad.A.justPressed || PlayerPad.B.justPressed || PlayerPad.X.justPressed || PlayerPad.Y.justPressed))
+
+        bool UseKeyboardAlso = m_ThirdPersonUserControl.GamepadIndex == 0;
+
+        var gamepads = Gamepad.all;
+        Gamepad currentGamepad = null;
+        if (m_ThirdPersonUserControl.GamepadIndex < gamepads.Count)
+        {
+            currentGamepad = gamepads[m_ThirdPersonUserControl.GamepadIndex];
+        }
+
+        if (currentGamepad == null)
+            return; // No gamepad connected.
+
+        if (bCanPickupNewIceCream && ((UseKeyboardAlso && (Keyboard.current.enterKey.wasPressedThisFrame || Keyboard.current.spaceKey.wasPressedThisFrame)) || currentGamepad.aButton.wasPressedThisFrame || currentGamepad.bButton.wasPressedThisFrame || currentGamepad.xButton.wasPressedThisFrame || currentGamepad.yButton.wasPressedThisFrame))
         {
             m_IceCreamCone.PickupNewIceCream();
         }

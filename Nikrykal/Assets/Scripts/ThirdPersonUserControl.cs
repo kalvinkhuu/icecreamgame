@@ -1,6 +1,6 @@
 using System;
 using UnityEngine;
-using UnityStandardAssets.CrossPlatformInput;
+using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(ThirdPersonCharacter))]
 public class ThirdPersonUserControl : MonoBehaviour
@@ -39,10 +39,48 @@ public class ThirdPersonUserControl : MonoBehaviour
     // Fixed update is called in sync with physics
     private void FixedUpdate()
     {
-        // read inputs
-        float h = GamepadIndex == -1 ? CrossPlatformInputManager.GetAxis("Horizontal") : hinput.gamepad[GamepadIndex].leftStick.position.x;
-        float v = GamepadIndex == -1 ? CrossPlatformInputManager.GetAxis("Vertical") : hinput.gamepad[GamepadIndex].leftStick.position.y;
-        bool crouch = GamepadIndex == -1 ? Input.GetKey(KeyCode.C) : hinput.gamepad[GamepadIndex].B.pressed;
+        bool UseKeyboardAlso = GamepadIndex == 0;
+
+        var gamepads = Gamepad.all;
+        Gamepad currentGamepad = null;
+        if (GamepadIndex < gamepads.Count)
+        {
+            currentGamepad = gamepads[GamepadIndex];
+        }
+
+        Vector2 KeyboardAxis = Vector2.zero;
+        if (UseKeyboardAlso)
+        {
+            if (Keyboard.current != null)
+            {
+                bool leftPressed = Keyboard.current[Key.A].isPressed || Keyboard.current[Key.LeftArrow].isPressed;
+                bool rightPressed = Keyboard.current[Key.D].isPressed || Keyboard.current[Key.RightArrow].isPressed;
+
+                float xLeft = leftPressed ? -1.0f : 0.0f;
+                float xRight = rightPressed ? 1.0f : 0.0f;
+                float x = xLeft + xRight;
+
+                bool upPressed = Keyboard.current[Key.W].isPressed || Keyboard.current[Key.UpArrow].isPressed;
+                bool downPressed = Keyboard.current[Key.S].isPressed || Keyboard.current[Key.DownArrow].isPressed;
+
+                float yUp = upPressed ? 1.0f : 0.0f;
+                float yDown = downPressed ? -1.0f : 0.0f;
+                float y = yUp + yDown;
+
+                KeyboardAxis = new Vector2(x, y);
+            }
+        }
+
+        Vector2 GamepadAxis = Vector2.zero;
+        if (currentGamepad != null)
+        {
+            GamepadAxis = currentGamepad.leftStick.ReadValue();
+        }
+
+        Vector2 Axis = GamepadAxis.magnitude > KeyboardAxis.magnitude ? GamepadAxis : KeyboardAxis;
+
+        float h = Axis.x;
+        float v = Axis.y;
 
         // calculate move direction to pass to character
         if (m_Cam != null)
@@ -56,12 +94,8 @@ public class ThirdPersonUserControl : MonoBehaviour
             // we use world-relative directions in the case of no main camera
             m_Move = v * Vector3.forward + h * Vector3.right;
         }
-#if !MOBILE_INPUT
-        // walk speed multiplier
-        if (Input.GetKey(KeyCode.LeftShift)) m_Move *= 0.5f;
-#endif
 
         // pass all parameters to the character control script
-        m_Character.Move(m_Move, crouch, false);
+        m_Character.Move(m_Move, false, false);
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class CreditsMenu : MonoBehaviour
 {
@@ -38,9 +39,15 @@ public class CreditsMenu : MonoBehaviour
             return;
         }
 
-        if (hinput.anyGamepad.B.justPressed)
+        var gamepad = Gamepad.current;
+        if (gamepad == null)
+            return; // No gamepad connected.
+
+        if (gamepad.bButton.wasPressedThisFrame || Keyboard.current.backspaceKey.wasPressedThisFrame || Keyboard.current.escapeKey.wasPressedThisFrame)
         {
             BackButton.onClick.Invoke();
         }
+
+        //Vector2 move = gamepad.leftStick.ReadValue();
     }
 }
