@@ -69,10 +69,12 @@ public class IceCreamPlayer : MonoBehaviour
             currentGamepad = gamepads[m_ThirdPersonUserControl.GamepadIndex];
         }
 
-        if (currentGamepad == null)
+        if (!UseKeyboardAlso && currentGamepad == null)
             return; // No gamepad connected.
 
-        if (bCanPickupNewIceCream && ((UseKeyboardAlso && (Keyboard.current.enterKey.wasPressedThisFrame || Keyboard.current.spaceKey.wasPressedThisFrame)) || currentGamepad.aButton.wasPressedThisFrame || currentGamepad.bButton.wasPressedThisFrame || currentGamepad.xButton.wasPressedThisFrame || currentGamepad.yButton.wasPressedThisFrame))
+        if (bCanPickupNewIceCream && ((UseKeyboardAlso && (Keyboard.current.enterKey.wasPressedThisFrame || Keyboard.current.spaceKey.wasPressedThisFrame)) 
+        || (currentGamepad != null && (currentGamepad.aButton.wasPressedThisFrame || currentGamepad.bButton.wasPressedThisFrame 
+        || currentGamepad.xButton.wasPressedThisFrame || currentGamepad.yButton.wasPressedThisFrame))))
         {
             m_IceCreamCone.PickupNewIceCream();
         }
