@@ -1,8 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using TMPro;
 
 [RequireComponent(typeof(ThirdPersonUserControl))]
 public class IceCreamPlayer : MonoBehaviour
